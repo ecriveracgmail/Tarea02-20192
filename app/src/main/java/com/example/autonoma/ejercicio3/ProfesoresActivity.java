@@ -1,7 +1,9 @@
 package com.example.autonoma.ejercicio3;
 
+import android.os.Debug;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,7 +16,18 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.autonoma.ejercicio3.adapter.MainAdapter;
+import com.example.autonoma.ejercicio3.api.UsuarioAPI;
+import com.example.autonoma.ejercicio3.model.Usuario;
+import com.example.autonoma.ejercicio3.model.Usuarios;
+
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class ProfesoresActivity extends AppCompatActivity {
 
@@ -24,6 +37,9 @@ public class ProfesoresActivity extends AppCompatActivity {
     ListView lvProfesores;
 
     ArrayAdapter<String> adapter;
+
+    Retrofit retrofit;
+    UsuarioAPI usuarioApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +58,7 @@ public class ProfesoresActivity extends AppCompatActivity {
                         android.R.layout.simple_list_item_1,
                         Profesores);
         //asignamos adaptador al list view
-        lvProfesores.setAdapter(adapter);
+        //lvProfesores.setAdapter(adapter);
         registerForContextMenu(lvProfesores);
         //
         btnGrebar.setOnClickListener(new View.OnClickListener() {
@@ -53,8 +69,64 @@ public class ProfesoresActivity extends AppCompatActivity {
             }
         });//fin setOnClickListener
 
+        //Instancio el adaptador
+        retrofit = new MainAdapter().getAdapter();
+        //Instancio el API
+        usuarioApi = retrofit.create(UsuarioAPI.class);
+        //
+
+        Call<List<Usuarios>> usuariosCall =
+                usuarioApi.getAllUsuarios();
+
+        Log.d("enqueue","ok");
+
+        usuariosCall.enqueue(new Callback<List<Usuarios>>() {
+            @Override
+            public void onResponse(Call<List<Usuarios>> call, Response<List<Usuarios>> response) {
+                Log.d("returno",response.body().toString());
+                //List<Usuario> usuario = response.body().
+
+
+
+
+
+            /*
+            * List<Usuario> usuario = response.body().getData();
+               List<String> strings = new ArrayList<>(usuario.size());
+               //obtener los nombres
+               for (Usuario oUsuario : usuario){
+                   strings.add(oUsuario.getFirst_name() + " " + oUsuario.getLast_name()  );
+               }
+               //
+               ArrayAdapter<String> adaptador =
+                       new ArrayAdapter<>(MainActivity.this,
+                               android.R.layout.simple_list_item_1,
+                               strings);
+
+
+               lvAlumnos.setAdapter(adaptador);
+            *
+            * */
+
+
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Usuarios>> call, Throwable t) {
+
+            }
+        });
+
 
     } // Fin onCreate
+
+
+
+    /*
+    *
+    *
+    * */
 
 
 

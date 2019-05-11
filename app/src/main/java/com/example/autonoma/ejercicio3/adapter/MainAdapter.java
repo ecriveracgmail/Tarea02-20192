@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainAdapter {
     Retrofit retrofit;
 
-    public Retrofit getAdaptar(){
+    public Retrofit getAdapter(){
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://reqres.in/api/")

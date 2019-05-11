@@ -29,9 +29,12 @@ public class MainActivity extends AppCompatActivity {
                 if(etUsuario.getText().toString().equals("elvis") &&
                         etClave.getText().toString().equals("123")){
                     //
+                    /*Intent intent = new Intent(
+                            MainActivity.this,
+                            ProfesoresActivity.class);*/
                     Intent intent = new Intent(
                             MainActivity.this,
-                            ProfesoresActivity.class);
+                            MapsActivity.class);
                     //Ir a Profesor Activity
                     startActivity(intent);
 
