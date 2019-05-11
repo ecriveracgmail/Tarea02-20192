@@ -20,6 +20,9 @@ public class ProfesoresActivity extends AppCompatActivity {
     Button btnGrebar;
     ArrayList Profesores;
     ListView lvProfesores;
+
+    ArrayAdapter<String> adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +34,7 @@ public class ProfesoresActivity extends AppCompatActivity {
         // inicializamos el array
         Profesores = new ArrayList<String>();
         //adaptadoir
-        ArrayAdapter<String> adapter =
+        adapter =
                 new ArrayAdapter<String>(
                         this,
                         android.R.layout.simple_list_item_1,
@@ -65,14 +68,51 @@ public class ProfesoresActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()){
+            //inicio case add_item
             case R.id.menu_add_item:
                 Toast.makeText(
                         ProfesoresActivity.this,
                         "Agregar Item",
                         Toast.LENGTH_LONG).show();
+                //agregar item al listado
+                Profesores.add("Profesor X");
+                adapter.notifyDataSetChanged();
+
+                return true;
+
+            //inicio case refrescar
+            case R.id.menu_refrescar:
+                Toast.makeText(
+                        ProfesoresActivity.this,
+                        "Refrescar",
+                        Toast.LENGTH_LONG).show();
+                //refrecar el adaptador
+                adapter.notifyDataSetChanged();
+
+                return true;
+
+            //inicio case Ver map
+            case R.id.menu_vermapa:
+                //TIP: Crear in activityt Plantilla Mapa
+                //Lleva al Activity
+                Toast.makeText(
+                        ProfesoresActivity.this,
+                        "Ver Mapa",
+                        Toast.LENGTH_LONG).show();
+
+                return true;
+
+            //inicio case Cerrar
+            case R.id.menu_cerrar:
+                //llevarte al mainActivity
+                //
+                Toast.makeText(
+                        ProfesoresActivity.this,
+                        "Cerrar Sesión",
+                        Toast.LENGTH_LONG).show();
                 return true;
             //
-            
+
             default:
                 return super.onOptionsItemSelected(item);
         }
