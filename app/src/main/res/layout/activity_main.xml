@@ -19,7 +19,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Ingrese su usuario"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:text="elvis" />
 
     <EditText
         android:id="@+id/edClave"
@@ -27,7 +28,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Ingrese su clave"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:text="123" />
 
     <Button
         android:id="@+id/btnLogin"

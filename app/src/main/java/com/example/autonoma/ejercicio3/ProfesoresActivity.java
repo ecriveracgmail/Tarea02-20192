@@ -2,10 +2,12 @@ package com.example.autonoma.ejercicio3;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,6 +43,7 @@ public class ProfesoresActivity extends AppCompatActivity {
                         Profesores);
         //asignamos adaptador al list view
         lvProfesores.setAdapter(adapter);
+        registerForContextMenu(lvProfesores);
         //
         btnGrebar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +56,50 @@ public class ProfesoresActivity extends AppCompatActivity {
 
     } // Fin onCreate
 
+
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        //
+        MenuInflater inflater = getMenuInflater();
+        //Adaptador de Vista
+        AdapterView.AdapterContextMenuInfo info =
+                (AdapterView.AdapterContextMenuInfo) menuInfo;
+        //
+        menu.setHeaderTitle("Profesor:" +
+                Profesores.get(info.position));
+        //Llama al menu Creado
+        inflater.inflate(R.menu.menu_contextual, menu);
+
+    }// fin metodo onCreateContextMenu
+
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info =
+            (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+        switch (item.getItemId()){
+            case R.id.menu_eliminar:
+                //eliminamos el item del array por la posicion
+                Profesores.remove(info.position);
+                //actualizamos el Adaptador
+                adapter.notifyDataSetChanged();
+                return true;
+
+            default:
+                return super.onContextItemSelected(item);
+        }
+
+
+
+        //   AdapterView.AdapterContextMenuInfo info =
+        // (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+    }// fin metodo onContextItemSelected
+
     //mostramos el menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -60,8 +107,7 @@ public class ProfesoresActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu,menu);
         return  true;
 
-    }
-    //detectar click
+    } // fin onCreateOptionsMenu
 
 
     @Override
@@ -104,7 +150,7 @@ public class ProfesoresActivity extends AppCompatActivity {
 
             //inicio case Cerrar
             case R.id.menu_cerrar:
-                //llevarte al mainActivity 
+                //llevarte al mainActivity
                 //
                 Toast.makeText(
                         ProfesoresActivity.this,
@@ -117,31 +163,9 @@ public class ProfesoresActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
         //
-    }
+    }//Fin del metodo onOptionsItemSelected
+
+
 } // Fin ProfesoresActivity
 
 
-
-
-
-/*
-*
-* // Inflamos el layout del menu de opciones
-
-// Manejamos eventos click en el menu de opciones
-@Override
-public boolean onOptionsItemSelected(MenuItem item) {
-   switch (item.getItemId()) {
-       case R.id.add_item:
-           // Añadimos nuevo nombre
-           this.alummnos.add("Added nº" + (++contador));
-           // Notificamos al adaptador del cambio producido
-           this.miAdaptador.notifyDataSetChanged();
-           return true;
-       default:
-           return super.onOptionsItemSelected(item);
-   }
-}
-
-
-* */
