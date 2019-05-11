@@ -2,22 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/add_item"
+        android:id="@+id/menu_add_item"
         android:title="Agregar Item"
         android:icon="@android:drawable/ic_menu_add"
         />
     <item
-        android:id="@+id/add_refrescar"
+        android:id="@+id/menu_refrescar"
         android:title="Refrescar"
         android:icon="@android:drawable/ic_menu_add"
         />
     <item
-        android:id="@+id/add_vermapa"
+        android:id="@+id/menu_vermapa"
         android:title="Ver Mapa"
         android:icon="@android:drawable/ic_menu_add"
         />
     <item
-        android:id="@+id/add_cerrar"
+        android:id="@+id/menu_cerrar"
         android:title="Cerrar"
         android:icon="@android:drawable/ic_menu_add"
         />
