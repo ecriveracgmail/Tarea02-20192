@@ -41,4 +41,37 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 }
+
+
+
+
+
+/*
+*
+* // Inflamos el layout del menu de opciones
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+   MenuInflater inflater = getMenuInflater();
+   inflater.inflate(R.menu.action_bar_menu, menu);
+   return true;
+}
+
+// Manejamos eventos click en el menu de opciones
+@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+   switch (item.getItemId()) {
+       case R.id.add_item:
+           // Añadimos nuevo nombre
+           this.alummnos.add("Added nº" + (++contador));
+           // Notificamos al adaptador del cambio producido
+           this.miAdaptador.notifyDataSetChanged();
+           return true;
+       default:
+           return super.onOptionsItemSelected(item);
+   }
+}
+
+
+* */

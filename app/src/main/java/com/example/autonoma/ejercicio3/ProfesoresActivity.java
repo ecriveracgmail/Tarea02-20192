@@ -2,6 +2,8 @@ package com.example.autonoma.ejercicio3;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -41,8 +43,44 @@ public class ProfesoresActivity extends AppCompatActivity {
                 Profesores.add(etNombre.getText().toString());
                 lvProfesores.deferNotifyDataSetChanged();
             }
-        });
+        });//fin setOnClickListener
 
+
+    } // Fin onCreate
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu,menu);
+        return  true;
 
     }
+
+
+} // Fin ProfesoresActivity
+
+
+
+
+
+/*
+*
+* // Inflamos el layout del menu de opciones
+
+// Manejamos eventos click en el menu de opciones
+@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+   switch (item.getItemId()) {
+       case R.id.add_item:
+           // Añadimos nuevo nombre
+           this.alummnos.add("Added nº" + (++contador));
+           // Notificamos al adaptador del cambio producido
+           this.miAdaptador.notifyDataSetChanged();
+           return true;
+       default:
+           return super.onOptionsItemSelected(item);
+   }
 }
+
+
+* */
